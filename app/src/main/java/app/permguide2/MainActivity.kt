@@ -12,17 +12,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import android.widget.TextView
 import android.widget.LinearLayout
-import android.content.Context.LAYOUT_INFLATER_SERVICE
-import android.view.LayoutInflater
-import android.widget.FrameLayout
-import kotlinx.android.synthetic.main.sample_content_shower.view.*
-import android.R.attr.name
 import android.app.AlertDialog
 import android.view.View
 import android.widget.ImageView
-import kotlinx.android.synthetic.main.nav_header_main.*
-import app.permguide2.R.id.imageView
-
+import android.content.Intent
+import android.graphics.Bitmap
+import app.permguide2.Context.model.ShowPlace
+import app.permguide2.Context.DBContext
+import app.permguide2.database.DbHelper
+import android.graphics.BitmapFactory
 
 
 
@@ -43,18 +41,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+        var db = DbHelper(this)
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.picture)
+        //db.insertData(ShowPlace(0, "blalbla", "123123123123", 12, -45, bitmap, "сам ты церковь"))
 
-        var showPlaces = Showplaces.Showplaces;
-        Showplaces.Add("23", Location(1.0f, 2.0f))
-        for (x in 0..10) {
-            showPlaces.forEach { value -> draww(value) }
-        }
+        db.allData.forEach { value -> addCard(value) }
 
         nav_view.setNavigationItemSelectedListener(this)
     }
 
 
-    fun draww(showPlace: ShowPlace) {
+    fun addCard(showPlace: ShowPlace) {
+
         val linLayout = findViewById<LinearLayout>(R.id.contentPanel)
 
         val ltInflater = layoutInflater
@@ -64,20 +62,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var txtName = item.findViewById<TextView>(R.id.name)
         var txtDescription = item.findViewById<TextView>(R.id.description)
         var imageView = item.findViewById<ImageView>(R.id.image)
+        var txtType = item.findViewById<TextView>(R.id.type)
 
-        var imagePath = R.drawable.picture
 
-        val clickListener = View.OnClickListener { onImageTap(imagePath) }
+        val clickListener = View.OnClickListener {view ->
+            if (view is ImageView) onImagePressed(showPlace.image) else onCardPressed(showPlace) }
         imageView.setOnClickListener(clickListener)
-        imageView.setImageResource(imagePath)
+        item.setOnClickListener(clickListener)
+        imageView.setImageBitmap(showPlace.image)
         txtName.text = showPlace.name
-        txtDescription.text = showPlace.name+"HAHA"
+        txtDescription.text = showPlace.description
+        txtType.text = showPlace.type
 
         linLayout.addView(item)
     }
 
+    fun onCardPressed(showPlace : ShowPlace)
+    {
+        val card = Intent(applicationContext, CardShowActivity::class.java)
+        card.putExtra("cardID", showPlace.id)
+        startActivity(card)
+    }
 
-    fun onImageTap(imagePath: Int)
+    fun onImagePressed(image: Bitmap)
     {
         var builder = AlertDialog.Builder(this)
         var alert = builder.create()
@@ -86,7 +93,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val item = ltInflater.inflate(R.layout.alert_dialog_photo_viewer, null)
         var imageView = item.findViewById<ImageView>(R.id.image)
-        imageView.setImageResource(imagePath)
+        imageView.setImageBitmap(image)
         alert.setView(item)
         alert.show()
     }
