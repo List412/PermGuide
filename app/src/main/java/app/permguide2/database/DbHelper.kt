@@ -76,10 +76,14 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
 
         this.writableDatabase.insert(TABLE_NAME, null, values)
         var db = this.readableDatabase
-        val query = "SELECT $COLUMN_ID FROM $TABLE_NAME ORDER BY $COLUMN_ID DESC LIMIT 5"
+        val query = "SELECT $COLUMN_ID FROM $TABLE_NAME ORDER BY $COLUMN_ID DESC LIMIT 1"
         var cursor = db.rawQuery(query, null)
         cursor.moveToFirst()
         return cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
+    }
+
+    fun deleteData(showPlace: ShowPlace?) {
+        this.writableDatabase.delete(TABLE_NAME, "$COLUMN_ID = ${showPlace?.id}", null)
     }
 
     val allData : ArrayList<ShowPlace>

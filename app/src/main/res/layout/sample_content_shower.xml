@@ -18,7 +18,7 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="15pt"
-            android:text="Some name, even long name" />
+            android:text="Нзвание" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_width="70pt"
                 android:layout_height="70pt"
                 android:contentDescription="TODO"
-                />
+                android:src="@drawable/bank"/>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -37,15 +37,25 @@
                 <TextView
                     android:id="@+id/type"
                     android:paddingLeft="4pt"
+                    android:layout_marginTop="4pt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Some type"/>
+                    android:text="Тип: храм, музей, пещера ..."/>
                 <TextView
                     android:id="@+id/description"
                     android:paddingLeft="4pt"
+                    android:layout_marginTop="4pt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Some description"/>
+                    android:text="Описание объекста, оно может умститься в несколько строк и включить в себя много информации"
+                    />
+                <TextView
+                    android:id="@+id/location"
+                    android:paddingLeft="4pt"
+                    android:layout_marginTop="4pt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Местоположение объекста, обычно это адресс"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -21,7 +21,7 @@ import app.permguide2.Context.model.ShowPlace
 import app.permguide2.Context.DBContext
 import app.permguide2.database.DbHelper
 import android.graphics.BitmapFactory
-
+import android.net.Uri
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+//        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val ltInflater = layoutInflater
 
-        val item = ltInflater.inflate(R.layout.sample_content_shower, linLayout, false)
+        val item = ltInflater.inflate(R.layout.sample_content_shower, linLayout , false)
 
         var txtName = item.findViewById<TextView>(R.id.name)
         var txtDescription = item.findViewById<TextView>(R.id.description)
@@ -126,21 +126,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
+                try {
+
+                    val intent = Intent("com.google.zxing.client.android.SCAN")
+                    intent.putExtra("SCAN_MODE", "QR_CODE_MODE") // "PRODUCT_MODE for bar codes
+
+                    startActivityForResult(intent, 0)
+
+                } catch (e: Exception) {
+
+                    val marketUri = Uri.parse("market://details?id=com.google.zxing.client.android")
+                    val marketIntent = Intent(Intent.ACTION_VIEW, marketUri)
+                    startActivity(marketIntent)
+
+                }
+
             }
             R.id.nav_gallery -> {
 
             }
             R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
 
             }
         }
