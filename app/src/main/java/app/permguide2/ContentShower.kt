@@ -105,13 +105,7 @@ class ContentShower : View {
         invalidateTextPaintAndMeasurements()
     }
 
-    fun onImageTap()
-    {
-        var builder = AlertDialog.Builder(this.context)
-        var alert = builder.create()
 
-        alert.setView(this)
-    }
 
     private fun invalidateTextPaintAndMeasurements() {
         mTextPaint!!.textSize = 12f

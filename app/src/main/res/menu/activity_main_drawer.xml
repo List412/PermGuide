@@ -10,7 +10,7 @@
             android:title="Достопримечательности" />
 
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/map"
             android:icon="@drawable/map_marker_multiple"
             android:title="Карта" />
         <item

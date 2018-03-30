@@ -6,27 +6,28 @@
     android:id="@+id/root_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8pt">
+    android:layout_marginBottom="4dp">
 
     <LinearLayout
-        android:padding="4pt"
+        android:padding="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#FFfF">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="15pt"
-            android:text="Нзвание" />
+            android:text="Название" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="70pt"
-                android:layout_height="70pt"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:contentDescription="TODO"
                 android:src="@drawable/bank"/>
             <LinearLayout
@@ -36,26 +37,26 @@
 
                 <TextView
                     android:id="@+id/type"
-                    android:paddingLeft="4pt"
+                    android:paddingLeft="4dp"
                     android:layout_marginTop="4pt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Тип: храм, музей, пещера ..."/>
                 <TextView
                     android:id="@+id/description"
-                    android:paddingLeft="4pt"
-                    android:layout_marginTop="4pt"
+                    android:paddingLeft="4dp"
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Описание объекста, оно может умститься в несколько строк и включить в себя много информации"
+                    android:text="Описание объекта может быть в несколько строк, оно включает в себя много информации"
                     />
                 <TextView
                     android:id="@+id/location"
-                    android:paddingLeft="4pt"
-                    android:layout_marginTop="4pt"
+                    android:paddingLeft="4dp"
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Местоположение объекста, обычно это адресс"/>
+                    android:text="Местоположение объекта, обычно это адрес"/>
             </LinearLayout>
         </LinearLayout>
 

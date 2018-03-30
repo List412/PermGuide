@@ -10,7 +10,7 @@ object DbContract {
     class ShowplaceEntry : BaseColumns {
         companion object {
             const val TABLE_NAME = "showplace"
-            const val COLUMN_ID = "id"
+            const val COLUMN_ID = "place_id"
             const val COLUMN_NAME = "name"
             const val COLUMN_DESCRIPTION = "description"
             const val COLUMN_IMAGE = "image"
@@ -19,6 +19,7 @@ object DbContract {
             const val COLUMN_LOCATION_Y = "location_y"
 
             const val COLUMN_SHOWPLACE_TYPE = "showplace_type"
+            const val COLUMN_VISITED = "visited"
 
         }
     }
